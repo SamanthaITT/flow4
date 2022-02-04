@@ -1,0 +1,312 @@
+[
+    {
+        "id": "d9206a642707ca5a",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8e5b02bb059e76d1",
+        "type": "mqtt in",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "topic": "sic/flow3/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "ae2aacdf3f5a39a4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "06eef9d42ccc1e6c"
+            ]
+        ]
+    },
+    {
+        "id": "06eef9d42ccc1e6c",
+        "type": "json",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "8b0c7b4aa3dc893f",
+                "159c616311e34c86",
+                "09a709c8b2bf87bb"
+            ]
+        ]
+    },
+    {
+        "id": "8b0c7b4aa3dc893f",
+        "type": "function",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "func": "msg.payload=msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "c6ac25fd010c7e68",
+                "ebb28f2ce0f280a2"
+            ]
+        ]
+    },
+    {
+        "id": "159c616311e34c86",
+        "type": "function",
+        "z": "d9206a642707ca5a",
+        "name": "Temperatura",
+        "func": "msg.payload=msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "6148daa391546613"
+            ]
+        ]
+    },
+    {
+        "id": "09a709c8b2bf87bb",
+        "type": "function",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.Temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "a5180dfea19663e8"
+            ]
+        ]
+    },
+    {
+        "id": "c6ac25fd010c7e68",
+        "type": "ui_text_input",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "label": "Nombre",
+        "tooltip": "",
+        "group": "d482e17e9bd8fec3",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 640,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6148daa391546613",
+        "type": "ui_gauge",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "group": "d482e17e9bd8fec3",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "C- units",
+        "format": "{{value}}",
+        "min": "5",
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 660,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a5180dfea19663e8",
+        "type": "ui_chart",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "group": "d482e17e9bd8fec3",
+        "order": 1,
+        "width": "5",
+        "height": "5",
+        "label": "chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "5",
+        "ymax": "40",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 660,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ebb28f2ce0f280a2",
+        "type": "debug",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "9652d21cf25b539a",
+        "type": "ui_switch",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "group": "d482e17e9bd8fec3",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 160,
+        "y": 420,
+        "wires": [
+            [
+                "1a59282ee7521bf6"
+            ]
+        ]
+    },
+    {
+        "id": "1a59282ee7521bf6",
+        "type": "mqtt out",
+        "z": "d9206a642707ca5a",
+        "name": "",
+        "topic": "sic/flow3/switch/spjc",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ae2aacdf3f5a39a4",
+        "x": 380,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ae2aacdf3f5a39a4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "35.157.158.119",
+        "port": "1883",
+        "clientid": "spjc310",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": "",
+        "credentials": {}
+    },
+    {
+        "id": "d482e17e9bd8fec3",
+        "type": "ui_group",
+        "name": "Flow 4- Temp",
+        "tab": "f0e377c19c0cb8c7",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "f0e377c19c0cb8c7",
+        "type": "ui_tab",
+        "name": "Flow 4",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]
